@@ -37,8 +37,8 @@ class Tsubasa {
 
     async log(msg, type = 'info') {
         const timestamp = new Date().toLocaleTimeString();
-        const accountPrefix = `Account ${this.accountIndex + 1}`;
-        const ipPrefix = this.proxyIP || 'Unknown IP';
+        const accountPrefix = `[Account ${this.accountIndex + 1}]`;
+        const ipPrefix = this.proxyIP ? `[${this.proxyIP}]` : '[Unknown IP]';
         const formattedType = type.toLocaleUpperCase();
     
         let logMessage = `${timestamp} | ${formattedType} | ${accountPrefix} | ${ipPrefix} | ${msg}`;
@@ -510,8 +510,8 @@ class Tsubasa {
                     this.log(`No available tasks.`, 'warning');
                 }
 
-                const totalTaps = await this.tapAndRecover(this.initData, axiosInstance);
-                this.log(`Total taps: ${totalTaps}`, 'success');
+                //const totalTaps = await this.tapAndRecover(this.initData, axiosInstance);
+                //this.log(`Total taps: ${totalTaps}`, 'success');
 
                 const dailyRewardResult = await this.callDailyRewardAPI(this.initData, axiosInstance);
                 this.log(dailyRewardResult.message, dailyRewardResult.success ? 'success' : 'warning');
@@ -519,7 +519,7 @@ class Tsubasa {
                 const updatedTotalCoins = await this.levelUpCards(this.initData, startResult.total_coins, axiosInstance);
                 this.log(`Upgraded all eligible cards | Balance: ${updatedTotalCoins}`, 'success');
 
-                await this.upgradeGameStats(this.initData, axiosInstance);
+                //await this.upgradeGameStats(this.initData, axiosInstance);
             } else {
                 this.log(startResult.error, 'error');
             }

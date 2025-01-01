@@ -494,8 +494,8 @@ class Tsubasa {
                             this.log(`No tasks available.`, 'warning');
                         }
 
-                        const totalTaps = await this.tapAndRecover(initData, axiosInstance);
-                        this.log(`Total taps: ${totalTaps}`, 'success');
+                        //const totalTaps = await this.tapAndRecover(initData, axiosInstance);
+                        //this.log(`Total taps: ${totalTaps}`, 'success');
 
                         const dailyRewardResult = await this.callDailyRewardAPI(initData, axiosInstance);
                         this.log(dailyRewardResult.message, dailyRewardResult.success ? 'success' : 'warning');
@@ -503,7 +503,7 @@ class Tsubasa {
                         const updatedTotalCoins = await this.levelUpCards(initData, startResult.total_coins, axiosInstance);
                         this.log(`All eligible cards upgraded | Balance: ${updatedTotalCoins}`, 'success');
 
-                        await this.upgradeGameStats(initData, axiosInstance);
+                        //await this.upgradeGameStats(initData, axiosInstance);
                     } else {
                         this.log(startResult.error, 'error');
                     }
